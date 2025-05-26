@@ -6,77 +6,82 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container mt-5">
-    <h1 class="mb-4">Оценка стоимости автомобиля</h1>
+<div class="container mt-4">
+    <h1 class="mb-3">Оценка стоимости автомобиля</h1>
     <form th:action="@{/predict}" th:object="${car}" method="post">
-<!--        <div class="mb-3">-->
+<!--        <div class="mb-2">-->
 <!--            <label for="brand" class="form-label">Марка</label>-->
 <!--            <input type="text" class="form-control" id="brand" th:field="*{brand}" required>-->
 <!--        </div>-->
-<!--        <div class="mb-3">-->
+<!--        <div class="mb-2">-->
 <!--            <label for="model" class="form-label">Модель</label>-->
 <!--            <input type="text" class="form-control" id="model" th:field="*{model}" required>-->
 <!--        </div>-->
-        <div class="mb-3">
+        <div class="mb-2">
             <label for="year" class="form-label">Год выпуска</label>
             <input type="number" class="form-control" id="year" th:field="*{yearOfProduction}" min="1900" max="2025" required>
         </div>
-        <div class="mb-3">
+        <div class="mb-2">
             <label for="transmission" class="form-label">Коробка передач</label>
-            <select class="form-select" id="transmission" th:field="*{gearbox}" required>
+            <select class="form-select" id="transmission" name="transmission" required>
+                <option value="" selected disabled>Выберите коробку передач</option>
                 <option th:each="type : ${T(ru.profit.predictcarprice.enums.Gearbox).values()}"
                         th:value="${type}"
                         th:text="${type.name}">
                 </option>
             </select>
         </div>
-        <div class="mb-3">
+        <div class="mb-2">
             <label for="wheelDrive" class="form-label">Привод</label>
-            <select class="form-select" id="wheelDrive" th:field="*{wheelDrive}" required>
+            <select class="form-select" id="wheelDrive" name="wheelDrive" required>
+                <option value="" selected disabled>Выберите привод</option>
                 <option th:each="type : ${T(ru.profit.predictcarprice.enums.WheelDrive).values()}"
                         th:value="${type}"
                         th:text="${type.name}">
                 </option>
             </select>
         </div>
-        <div class="mb-3">
+        <div class="mb-2">
             <label for="mileage" class="form-label">Пробег (км)</label>
             <input type="number" step="1000" class="form-control" id="mileage" th:field="*{mileage}" min="0" required>
         </div>
-        <div class="mb-3">
+        <div class="mb-2">
             <label for="bodyType" class="form-label">Тип кузова</label>
             <input type="text" class="form-control" id="bodyType" th:field="*{bodyType}" required>
         </div>
-        <div class="mb-3">
+        <div class="mb-2">
             <label for="condition" class="form-label">Состояние</label>
-            <select class="form-select" id="condition" th:field="*{condition}" required>
+            <select class="form-select" id="condition" name="condition" required>
+                <option value="" selected disabled>Выберите состояние</option>
                 <option th:each="type : ${T(ru.profit.predictcarprice.enums.Condition).values()}"
                         th:value="${type}"
                         th:text="${type.name}">
                 </option>
             </select>
         </div>
-        <div class="mb-3">
+        <div class="mb-2">
             <label for="owners" class="form-label">Владельцы</label>
-            <select class="form-select" id="owners" th:field="*{owners}" required>
+            <select class="form-select" id="owners" name="owners" required>
+                <option value="" selected disabled>Выберите количество владельцев</option>
                 <option th:each="type : ${T(ru.profit.predictcarprice.enums.Owners).values()}"
                         th:value="${type}"
                         th:text="${type.name}">
                 </option>
             </select>
         </div>
-        <div class="mb-3">
+        <div class="mb-2">
             <label for="engineVolume" class="form-label">Объем двигателя (л)</label>
             <input type="number" step="0.1" class="form-control" id="engineVolume" th:field="*{engineVolume}" min="0.5" max="10" required>
         </div>
-        <div class="mb-3">
+        <div class="mb-2">
             <label for="enginePower" class="form-label">Мощность двигателя (л.с.)</label>
             <input type="number" class="form-control" id="enginePower" th:field="*{enginePower}" min="0" required>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-2">
             <label for="fuelType" class="form-label">Тип топлива</label>
-            <select class="form-select" id="fuelType" th:field="*{fuelType}" required>
+            <select class="form-select" id="fuelType" name="fuelType" required>
+                <option value="" selected disabled>Выберите тип топлива</option>
                 <option th:each="type : ${T(ru.profit.predictcarprice.enums.FuelType).values()}"
                         th:value="${type}"
                         th:text="${type.name}">

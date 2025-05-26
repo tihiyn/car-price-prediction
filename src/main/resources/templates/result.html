@@ -25,7 +25,7 @@
 
             <h5 class="mt-4">Предсказанная стоимость:</h5>
             <div class="alert alert-success" role="alert">
-                <span th:text="${#numbers.formatDecimal(predictedPrice, 1, 2)}"></span> ₽
+                <span th:text="${predictedPrice}"></span> ₽
             </div>
 
             <a href="/" class="btn btn-primary">Оценить другой автомобиль</a>

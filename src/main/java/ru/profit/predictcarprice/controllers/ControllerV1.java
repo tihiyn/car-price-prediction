@@ -22,7 +22,7 @@ public class ControllerV1 {
 
     @PostMapping("/predict")
     public String predictPrice(@ModelAttribute Car car, Model model) {
-        double predictedPrice = predictionService.predictPrice(car);
+        int predictedPrice = predictionService.predictPrice(car);
         model.addAttribute("predictedPrice", predictedPrice);
         model.addAttribute("car", car);
         return "result";

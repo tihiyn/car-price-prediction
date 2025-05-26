@@ -4,7 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum Condition {
-    OK("Не требует ремонта");
+    OK("Не требует ремонта"),
+    NO_OK("Битый / не на ходу");
 
     private final String name;
 
