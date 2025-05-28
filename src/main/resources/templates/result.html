@@ -8,11 +8,18 @@
 <body>
 <div class="container mt-5">
     <h1 class="mb-4">Результат оценки</h1>
+    <div class="d-flex justify-content-end mb-3">
+        <div th:if="${#authentication.principal != 'anonymousUser'}">
+            <span class="me-3">Вы вошли как: <strong th:text="${#authentication.name}"></strong></span>
+            <a th:href="@{/account}" class="btn btn-outline-primary me-2">Личный кабинет</a>
+            <form th:action="@{/logout}" method="post" class="d-inline">
+                <button type="submit" class="btn btn-outline-danger">Выйти</button>
+            </form>
+        </div>
+    </div>
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Характеристики автомобиля</h5>
-<!--            <p class="card-text"><strong>Марка:</strong> <span th:text="${car.brand}"></span></p>-->
-<!--            <p class="card-text"><strong>Модель:</strong> <span th:text="${car.model}"></span></p>-->
             <p class="card-text"><strong>Год выпуска:</strong> <span th:text="${car.yearOfProduction}"></span></p>
             <p class="card-text"><strong>Коробка передач:</strong> <span th:text="${car.gearbox.name}"></span></p>
             <p class="card-text"><strong>Привод:</strong> <span th:text="${car.wheelDrive.name}"></span></p>

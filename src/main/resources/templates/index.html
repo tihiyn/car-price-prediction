@@ -8,22 +8,23 @@
 <body>
 <div class="container mt-4">
     <h1 class="mb-3">Оценка стоимости автомобиля</h1>
+    <div class="d-flex justify-content-end mb-3">
+        <div th:if="${#authentication.principal != 'anonymousUser'}">
+            <span class="me-3">Вы вошли как: <strong th:text="${#authentication.name}"></strong></span>
+            <a th:href="@{/account}" class="btn btn-outline-primary me-2">Личный кабинет</a>
+            <form th:action="@{/logout}" method="post" class="d-inline">
+                <button type="submit" class="btn btn-outline-danger">Выйти</button>
+            </form>
+        </div>
+    </div>
     <form th:action="@{/predict}" th:object="${car}" method="post">
-<!--        <div class="mb-2">-->
-<!--            <label for="brand" class="form-label">Марка</label>-->
-<!--            <input type="text" class="form-control" id="brand" th:field="*{brand}" required>-->
-<!--        </div>-->
-<!--        <div class="mb-2">-->
-<!--            <label for="model" class="form-label">Модель</label>-->
-<!--            <input type="text" class="form-control" id="model" th:field="*{model}" required>-->
-<!--        </div>-->
         <div class="mb-2">
             <label for="year" class="form-label">Год выпуска</label>
             <input type="number" class="form-control" id="year" th:field="*{yearOfProduction}" min="1900" max="2025" required>
         </div>
         <div class="mb-2">
             <label for="transmission" class="form-label">Коробка передач</label>
-            <select class="form-select" id="transmission" name="transmission" required>
+            <select class="form-select" id="transmission" name="gearbox" required>
                 <option value="" selected disabled>Выберите коробку передач</option>
                 <option th:each="type : ${T(ru.profit.predictcarprice.enums.Gearbox).values()}"
                         th:value="${type}"
